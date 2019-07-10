@@ -1,4 +1,4 @@
-# Dictionaries lab
+# Dictionaries Lab, Tues 7.09.19 - Blanca Cruz
 
 Fork and clone this repo. On your fork, answer and commit the follow questions. When you are finished, submit the link to your repo on Canvas.
 
@@ -11,22 +11,54 @@ Fork and clone this repo. On your fork, answer and commit the follow questions. 
 
 - Translate at least 3 of the capital names into another language.
 
+```swift
+var citiesDict: [String:String]
+
+citiesDict = ["USA": "Washington D.C", "Costa Rica": "San Jose", "Mexico": "Mexico City"]
+citiesDict["Spain"] = "Madrid"
+citiesDict["Spain"] = "\u{5E1}\u{5D0}\u{5B7}\u{5DF} \u{5D3}\u{5D6}\u{5E9}\u{5D0}\u{5B8}\u{5E1}\u{5E2}"
+citiesDict["Italy"] = "Rome"
+citiesDict["Italy"] = "La M\u{E3}"
+citiesDict["Costa Rica"] = "\u{5E1}\u{5D0}\u{5B7}\u{5DF} \u{5D3}\u{5D6}\u{5E9}\u{5D0}\u{5B8}\u{5E1}\u{5E2}"
+print(citiesDict)
+```
+
 
 ## Question 2
 
 `var someDict:[String:Int] = ["One": 1, "Two": 4, "Three": 9, "Four": 16, "Five": 25]`
 
-- Using `someDict`, add together the values associated with "Three" and "Five" and print the result.
+a. Using `someDict`, add together the values associated with "Three" and "Five" and print the result.
 
-- Add values to the dictionary for the keys "Six" and "Seven".
+b. Add values to the dictionary for the keys "Six" and "Seven".
 
-- Make a key called `productUpToSeven` and set its value equal to the product of all the values.
+c. Make a key called `productUpToSeven` and set its value equal to the product of all the values.
 
-- Make a key called `sumUpToSix` and set its value equal to the sum of the keys "One", "Two", "Three", "Four", "Five" and "Six".
+d. Make a key called `sumUpToSix` and set its value equal to the sum of the keys "One", "Two", "Three", "Four", "Five" and "Six".
 
-- Remove the new keys made in the previous two steps
+e. Remove the new keys made in the previous two steps
 
-- Add 2 to every value inside of `someDict`.
+f. Add 2 to every value inside of `someDict`.
+
+
+```swift
+var someDict:[String:Int] = ["One": 1, "Two": 4, "Three": 9, "Four": 16, "Five": 25]
+
+print(someDict["Three"]! + someDict["Five"]!)
+someDict["Six"] = 36
+someDict["Seven"] = 49
+someDict["productUpToSeven"] = (someDict["One"]! + someDict["Two"]! + someDict["Three"]! + someDict["Four"]! + someDict["Five"]! + someDict["Six"]! + someDict["Seven"]!)
+print(someDict)
+someDict["sumUpToSix"] = (someDict["One"]! + someDict["Two"]! + someDict["Three"]! + someDict["Four"]! + someDict["Five"]!)
+someDict["productUpToSeven"] = nil
+someDict["sumUpToSix"] = nil
+print(someDict)
+for (key, value) in someDict {
+someDict[key] = value + 2
+}
+
+print(someDict)
+```
 
 
 ## Question 3
@@ -43,13 +75,30 @@ Create a variable that is explicitly typed as a dictionary that maps strings to 
 
 Using the dictionary created in the previous problem, do the following:
 
-- Print out the floating-point score for “John Steinbeck”.
+a. Print out the floating-point score for “John Steinbeck”.
 
-- Add an additional author named “Erik Larson” with an assigned score of 9.2.
+b. Add an additional author named “Erik Larson” with an assigned score of 9.2.
 
-- Write an if/else statement that compares the score of John Krakaur with Mark Twain. Print out the name of the author with the highest score.
+c. Write an if/else statement that compares the score of John Krakaur with Mark Twain. Print out the name of the author with the highest score.
 
-- Use a for-loop to iterate through the dictionary you created at the beginning of the problem, and print out the content in the form of key: value, one entry per line.
+d. Use a for-loop to iterate through the dictionary you created at the beginning of the problem, and print out the content in the form of key: value, one entry per line.
+
+```Swift
+var authorDict:[String:Double] = ["Mark Twain": 8.9, "Nathaniel Hawthorne": 5.1, "John Steinbeck": 2.3, "C.S. Lewis": 9.9, "John Krakaur": 6.1]
+
+authorDict["Erik Larson"] = 9.2
+print(authorDict["John Steinbeck"]!)
+
+if authorDict["John Krakaur"]! > authorDict["Mark Twain"]! {
+print("John Krakaur")
+} else {
+print("Mark Twain")
+}
+
+for (key, value) in authorDict {
+print("\(key), \(value)")
+}
+```
 
 
 ## Question 4
@@ -87,10 +136,33 @@ var code = [
 ]
 
 var message = "hello world"
+var emptyCode = ""
+
+for character in message {
+code[String(character)] = code[String(character)] ?? " "
+emptyCode += code[String(character)]!
+}
+
+print(emptyCode)
 ```
 
 You are also given an `encodedMessage` which contains only lowercase letters and spaces. Use the `code` dictionary to decode the message and print it.
 `var encodedMessage = "uijt nfttbhf jt ibse up sfbe"`
+
+```swift
+var encodedMessage = "uijt nfttbhf jt ibse up sfbe"
+var newMessage = ""
+for i in encodedMessage {
+if i == " " {
+newMessage += " "}
+for(key, value) in code {
+if String(i) == value {
+newMessage.append(key)
+}
+}
+}
+print(newMessage)
+```
 
 
 ## Question 5
